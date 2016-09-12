@@ -1,0 +1,30 @@
+# Exercise 2.8 ball_table1
+
+import numpy as np
+from tabulate import tabulate
+
+g = 9.81 
+v0 = 10
+n = 9
+
+t = np.linspace(0,2*v0/g,n+1)
+y = np.zeros(n+1)
+
+def ym(t):
+    return v0*t-g*t-0.5*g*t**2
+
+# ym(t)   # It wouldn't really be necessart with a for loop the way I have done it....y = ym(0)
+
+for i in range(len(t)):
+    y[i] = ym(t[i])
+    
+# Let's make a table 
+
+table = zip(t,y)
+
+print tabulate(table, headers = ["Time", "y"])
+
+# or like this
+
+#for i in range(n+1):
+    
