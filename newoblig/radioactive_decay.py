@@ -42,3 +42,11 @@ u_exact_final = exp(-a*t_final)
 
 print '%16s %16s' %('Computed value','Exact value')
 print '%16.10f %16.10f' %(u[-1], u_exact_final)
+
+
+
+# Kjoreeksempel
+"""
+  Computed value      Exact value
+    0.1952760955     0.0841187620
+"""
