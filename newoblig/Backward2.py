@@ -23,31 +23,37 @@ h = np.zeros(15)
 for k in range(len(h)):
 	h[k]= 2**(-k)
 
+t = 0
+g_prime_exact = -exp(-t)
 
-# Backward2
-g_prime2 = np.zeros(len(h))
+# Print error
+print '%16s %16s' %('Backward1 error','Backward2 error')
 for i in range(len(h)):
-	bw2 = Backward2(g, h[i])
-	g_prime2[i] = bw2(x=0)
+    bw1 = Backward1(g,h[i])
+    error1 = abs(bw1(t) - g_prime_exact)
+    bw2 = Backward2(g,h[i])
+    error2 = abs(bw2(t) - g_prime_exact)
+    print '%16.10f %16.10f' %(error1, error2)
 
-# Backward1
-g_prime1 = np.zeros(len(h))
-for i in range(len(h)):
-	bw1 = Backward1(g, h[i])
-	g_prime1[i] = bw1(x=0)
-
-
-
-# Absolute error between Backward1 and Backward2
-err = np.zeros(len(h))
-err = np.abs(g_prime2-g_prime1)
-print err
 
 
 # Kjoreeksempel
 """
-[  1.47624622e+00   4.20839287e-01   1.61340875e-01   7.09140422e-02
-   3.32762818e-02   1.61223027e-02   7.93569042e-03   3.93690712e-03
-   1.96077181e-03   9.78472024e-04   4.88758359e-04   2.44259868e-04
-   1.22100119e-04   6.10426086e-05   3.05194371e-05]
+ Backward1 error  Backward2 error
+    0.7182818285     0.7579643925
+    0.2974425414     0.1233967457
+    0.1361016668     0.0252392079
+    0.0651876245     0.0057264177
+    0.0319113427     0.0013649392
+    0.0157890400     0.0003332627
+    0.0078533495     0.0000823409
+    0.0039164424     0.0000204647
+    0.0019556706     0.0000051012
+    0.0009771986     0.0000012734
+    0.0004884402     0.0000003181
+    0.0002441804     0.0000000795
+    0.0001220802     0.0000000199
+    0.0000610376     0.0000000050
+    0.0000305182     0.0000000012
+
 """
